@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="EndFaceDetection.ControlLibrary.Controls.MyUPDownNumericControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:EndFaceDetection.ControlLibrary.Controls"
+             mc:Ignorable="d" 
+             SizeChanged="UserControl_SizeChanged"
+             d:DesignHeight="50" d:DesignWidth="100">
+    <Grid>
+        <Grid Grid.Column="3" Height="30" HorizontalAlignment="Left">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="20"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBox VerticalContentAlignment="Bottom" Style="{x:Null}"
+             Text="{Binding MyInt,RelativeSource={RelativeSource AncestorType=UserControl}, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
+             Name="txtBox_Int" MinWidth="80" Grid.RowSpan="2"/>
+            <Button Content="▲" Name="btn_UP" Click="btn_UP_Click" Grid.Column="1" FontSize="8"/>
+            <Button Content="▼" Name="btn_Down" Click="btn_Down_Click" Grid.Column="1" Grid.Row="1" FontSize="8"/>
+        </Grid>
+    </Grid>
+</UserControl>

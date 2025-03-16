@@ -1,0 +1,40 @@
+﻿<Window x:Class="EndFaceDetection.Shell.Views.TestView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EndFaceDetection.Shell.Views"
+        xmlns:vm="clr-namespace:EndFaceDetection.Shell.ViewModels"
+        xmlns:controls="clr-namespace:EndFaceDetection.ControlLibrary.Controls;assembly=EndFaceDetection.ControlLibrary"
+        mc:Ignorable="d"
+        Title="功能测试窗体" Height="450" Width="800">
+    <Window.DataContext>
+        <vm:TestVM/>
+    </Window.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+            <RowDefinition Height="45"/>
+        </Grid.RowDefinitions>
+        <GroupBox Header="功能测试">
+            <StackPanel Orientation="Horizontal">
+                <Button Content="获取检测类别" Style="{StaticResource defaultButton}" Command="{Binding GetTextCommand}" Margin="10 0"/>
+                <Button Content="运行python程序" Style="{StaticResource defaultButton}" Command="{Binding RunPythonCommand}" Margin="10 0"/>
+                <Button Content="停止python程序" Style="{StaticResource defaultButton}" Command="{Binding StopPythonCommand}" Margin="10 0"/>
+                <Button Content="测试转换功能" Style="{StaticResource defaultButton}" Command="{Binding TestImageConverterCommand}" Margin="10 0"/>
+                <Button Content="测试skbitmap转换功能" Style="{StaticResource defaultButton}" Command="{Binding SkBitmapDemoCommand}" Margin="10 0"/>
+                <Button Content="瑕疵检测功能测试" Style="{StaticResource defaultButton}" Command="{Binding DectionDemoCommand}" Margin="10 0"/>
+                <Button Content="loading" Style="{StaticResource defaultButton}" Command="{Binding LoadingCommand}" Margin="10 0"/>
+                <Button Content="unload" Style="{StaticResource defaultButton}" Command="{Binding UnloadCommand}" Margin="10 0"/>
+            </StackPanel>
+        </GroupBox>
+
+        <GroupBox Header="窗体测试" Grid.Row="1">
+            <controls:M_ImageControl MResultImage="{Binding BitmapImage,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"/>
+        </GroupBox>
+        <GroupBox Header="消息栏测试" Grid.Row="2">
+            
+        </GroupBox>
+    </Grid>
+</Window>

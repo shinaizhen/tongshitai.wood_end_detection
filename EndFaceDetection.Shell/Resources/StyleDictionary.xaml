@@ -1,0 +1,302 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <FontFamily x:Key="fontFamilyWin">
+        pack://application:,,,/EndFaceDetection.Shell;component/Resources/Iconfonts/iconfont.ttf#iconfont
+    </FontFamily>
+    <Style x:Key="defaultRadioStyle" TargetType="RadioButton">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="Foreground" Value="#88949A"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="RadioButton">
+                    <Grid Background="{TemplateBinding Background}">
+                        <Border x:Name="border" BorderBrush="{TemplateBinding Foreground}" BorderThickness="0 0 0 0 "/>
+                        <ContentPresenter Focusable="False" 
+                                  RecognizesAccessKey="True"
+                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                  Margin="{TemplateBinding Padding}"
+                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter Property="Foreground" Value="#8CEDCB"/>
+                            <Setter Property="BorderThickness" Value="0 0 0 1" TargetName="border"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--系统菜单style-->
+    <Style x:Key="radiobtnStyle" TargetType="RadioButton">
+        <Setter Property="Foreground" Value="Blue"/>
+        <Setter Property="Margin" Value="0,5"/>
+        <Setter Property="MinWidth" Value="76"/>
+        <Setter Property="Template" >
+            <Setter.Value>
+                <ControlTemplate TargetType="RadioButton">
+                    <Grid>
+                        <Border Grid.RowSpan="2" x:Name="back"/>
+                        <TextBlock  x:Name="txt" VerticalAlignment="Center"
+                            Text="{Binding RelativeSource={RelativeSource AncestorType=RadioButton},Path=Content}"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="White" TargetName="back"/>
+                            <Setter Property="Opacity" Value="0.25" TargetName="back"/>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter Property="Opacity" Value="1" TargetName="back"/>
+                            <Setter Property="Background" Value="Green" TargetName="back"/>
+                            <Setter Property="Foreground" Value="white" TargetName="txt"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="defaultButton" TargetType="Button">
+        <Setter Property="MinHeight" Value="35"/>
+        <Setter Property="MinWidth" Value="75"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <!-- 按钮模板 -->
+                <ControlTemplate TargetType="Button">
+                    <Border Background="#FFFFFF" CornerRadius="5" BorderBrush="#409EFF" BorderThickness="1" x:Name="border" >
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="{TemplateBinding HorizontalAlignment}">
+                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" >
+                                <TextBlock x:Name="textInfo" Text="{TemplateBinding Content}"
+                                HorizontalAlignment="Center" VerticalAlignment="Center"
+                                Foreground="#409EFF"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Background" TargetName="border" Value="#409EFF"/>
+                            <Setter Property="Foreground" TargetName="textInfo" Value="#FFFFFF"/>
+                            <Setter Property="FontWeight" TargetName="textInfo" Value="Bold" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="true">
+                            <Setter Property="Background" TargetName="border" Value="#003a8c"/>
+                            <Setter Property="BorderBrush" TargetName="border" Value="#003a8c"/>
+                            <Setter Property="Foreground" TargetName="textInfo" Value="#FFFFFF"/>
+                            <Setter Property="FontWeight" TargetName="textInfo" Value="Bold" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+       
+    </Style>
+
+    <Style x:Key="defaultButtonV2" TargetType="Button">
+        <Setter Property="MinHeight" Value="35"/>
+        <Setter Property="MinWidth" Value="75"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <!-- 按钮模板 -->
+                <ControlTemplate TargetType="Button">
+                    <Border Background="#FFFFFF" CornerRadius="5" BorderBrush="#409EFF" BorderThickness="1" x:Name="border" >
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="{TemplateBinding HorizontalAlignment}">
+                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" >
+                                <TextBlock x:Name="textInfo" Text="{TemplateBinding Content}"
+                            HorizontalAlignment="Center" VerticalAlignment="Center"
+                            Foreground="#409EFF"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Background" TargetName="border" Value="#FF3D81EF"/>
+                            <Setter Property="Foreground" TargetName="textInfo" Value="#FFFFFF"/>
+                            <Setter Property="FontWeight" TargetName="textInfo" Value="Bold" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="true">
+                            <Setter Property="Background" TargetName="border" Value="red"/>
+                            <Setter Property="Foreground" TargetName="textInfo" Value="#FFFFFF"/>
+                            <Setter Property="FontWeight" TargetName="textInfo" Value="Bold" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+    </Style>
+
+
+
+    <Style TargetType="TextBox" x:Key="textbox_style_base">
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="Width" Value="150"/>
+        <Setter Property="Margin" Value="10 0"/>
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="VerticalContentAlignment" Value="Bottom"/>
+        <Setter Property="BorderThickness" Value="0 0 0 1"/>
+        <Setter Property="VerticalAlignment" Value="Bottom"/>
+    </Style>
+
+    <Style x:Key="textbox_style_status" TargetType="TextBox">
+        <Setter Property="IsReadOnly" Value="True"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TextBox">
+                    <Border BorderBrush="Black" BorderThickness="2">
+                        <StackPanel Orientation="Horizontal">
+                            <Ellipse x:Name="ellipse"  Width="40" Height="40" Margin="5" Fill="Green" VerticalAlignment="Center"/>
+                            <TextBlock Margin="10 0 0 0" 
+                                x:Name="textBlock" VerticalAlignment="Center" Foreground="Blue"
+       Tag="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},
+            Path=Tag,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" FontSize="20"
+            Text="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Path=Text}"/>
+                        </StackPanel>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Tag" Value="red" SourceName="textBlock">
+                            <Setter TargetName="ellipse" Property="Fill" Value="red"/>
+                        </Trigger>
+                        <Trigger Property="Tag" Value="green" SourceName="textBlock">
+                            <Setter TargetName="ellipse" Property="Fill" Value="green"/>
+                        </Trigger>
+                        <Trigger Property="Tag" Value="yellow" SourceName="textBlock">
+                            <Setter TargetName="ellipse" Property="Fill" Value="yellow"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--系统按钮style-->
+    <Style x:Key="button_style_win" TargetType="Button">
+        <Setter Property="Width" Value="25"/>
+        <Setter Property="Height" Value="25"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <Border x:Name="back" Background="Transparent"/>
+                        <TextBlock Text="{Binding RelativeSource={RelativeSource AncestorType=Button},
+                            Path=Content}" FontFamily="{StaticResource fontFamilyWin}"
+                                   Foreground="Black"
+                           VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="White" TargetName="back"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" Value="red" TargetName="back"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="TextBox" x:Key="txtbox_result_style">
+        <Setter Property="ItemsControl.Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TextBox">
+                    <Grid>
+                        <Border x:Name="back" Background="Green"/>
+                        <TextBlock x:Name="textblock" Text="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},
+                        Path=Text,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                            VerticalAlignment="Center" HorizontalAlignment="Center"
+                        FontSize="60"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Tag" SourceName="textblock" Value="red">
+                            <Setter TargetName="back" Property="Background" Value="Red"/>
+                        </Trigger>
+                        <Trigger Property="Tag" SourceName="textblock" Value="green">
+                            <Setter TargetName="back" Property="Background" Value="Green"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <!--带图标btn样式-->
+    <Style TargetType="Button" x:Key="btn_with_icon">
+        <Setter Property="MinHeight" Value="35"/>
+        <Setter Property="MinWidth" Value="75"/>
+        <Setter Property="Margin" Value="10 0"/>
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <Border x:Name="back" Background="Aqua" BorderThickness="1" CornerRadius="5"/>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock VerticalAlignment="Center" Margin="5 0"
+                                   FontSize="{Binding RelativeSource={RelativeSource 
+                            Mode=TemplatedParent},Path=FontSize,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                            Text="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},Path=Tag
+                            ,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Name="text_tag" FontFamily="{StaticResource fontFamilyWin}"/>
+                            <TextBlock VerticalAlignment="Center"
+                                   FontSize="{Binding RelativeSource={RelativeSource 
+                            Mode=TemplatedParent},Path=FontSize,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                            Text="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},
+                            Path=Content,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Name="text_con"/>
+                        </StackPanel>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="back" Property="Background" Value="#FF3D81EF"/>
+                            <Setter TargetName="text_tag" Property="Foreground" Value="white"/>
+                            <Setter TargetName="text_con" Property="Foreground" Value="white"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="back" Property="Background" Value="red"/>
+                            <Setter TargetName="text_tag" Property="Foreground" Value="white"/>
+                            <Setter TargetName="text_con" Property="Foreground" Value="white"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style TargetType="Button" x:Key="btn_without_icon">
+        <Setter Property="MinHeight" Value="35"/>
+        <Setter Property="MinWidth" Value="75"/>
+        <Setter Property="Margin" Value="10 0"/>
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <Border x:Name="back" Background="Aqua" CornerRadius="5"/>
+                        <TextBlock VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   Margin="10 0"
+                    FontSize="{Binding RelativeSource={RelativeSource 
+                         Mode=TemplatedParent},Path=FontSize,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                         Text="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},
+                         Path=Content,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Name="text_con"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="back" Property="Background" Value="#FF3D81EF"/>
+                            <Setter TargetName="text_con" Property="Foreground" Value="white"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="back" Property="Background" Value="red"/>
+                            <Setter TargetName="text_con" Property="Foreground" Value="white"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

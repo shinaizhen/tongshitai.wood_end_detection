@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EndFaceDetection.Common\EndFaceDetection.Common.csproj" />
+    <ProjectReference Include="..\EndFaceDetection.Services\EndFaceDetection.Services.csproj" />
+  </ItemGroup>
+
+</Project>
