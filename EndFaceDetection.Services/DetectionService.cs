@@ -208,7 +208,7 @@ namespace EndFaceDetection.Services
                         Height = (float)Convert.ToDecimal(res[5])
                     };
                     label.ClassName = classes[label.Id];
-                    if (label.Id == 0 || label.Id == 1)
+                    if (label.Id == 0 || label.Id == 1)//判断空洞类型
                     {
                         if (label.Area < 80000)
                         {
@@ -249,7 +249,7 @@ namespace EndFaceDetection.Services
 
             string path = @"D:\Temp\res01.txt";
             // 获取标签
-            var labels = GetLabels(path, [0, 1, 2, 3, 4, 5, 6]);
+            var labels = GetLabels(path, [0, 1, 2, 3, 4, 5, 6,7,8]);
             detectionReaultInfo.Labels.AddRange(labels);
             if (cameraName == "Camera")
             {
@@ -361,7 +361,7 @@ namespace EndFaceDetection.Services
                     return;
                 }
             }
-            else
+            else// 缺少两个
             {
                 // 第一个矩形
                 x1 = (int)img_width / 3;
@@ -445,7 +445,7 @@ namespace EndFaceDetection.Services
                     // 绘制文本框
                     string textToDraw = label.Id.ToString()?? "Unknown";
                     int txt_x = (int)(label.X);
-                    int txt_y = (int)(label.Y - 120);
+                    int txt_y = (int)(label.Y - 20);
 
                     canvas.DrawText(textToDraw, txt_x, txt_y, textPaint);
                    

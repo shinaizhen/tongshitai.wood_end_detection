@@ -30,6 +30,7 @@ namespace EndFaceDetection.Shell.ViewModels
         
         // 服务器
         CameraService m_cameraService {  get; set; }
+
         PLCService m_PLCService {  get; set; }
         DetectionService m_DetectionService { get; set; }
 
@@ -74,9 +75,9 @@ namespace EndFaceDetection.Shell.ViewModels
             var app = (App)Application.Current;
             m_cameraService = app.CameraService;
             m_PLCService = app.PLCService;
-            m_PLCService.PopImageAction += new Action(PopImage);
-            m_cameraService.StateChanged += new Action<string, bool>(UpdatedStatus);
-            m_cameraService.CBImage += new Action<Services.ImageInfo>(CBImage);
+            m_PLCService.PopImageAction += new Action(PopImage);//切换图像
+            m_cameraService.StateChanged += new Action<string, bool>(UpdatedStatus);//相机状态更新
+            m_cameraService.CBImage += new Action<Services.ImageInfo>(CBImage);//相机控制取图
             app.PLCService.GrabbedAction += new Action<WoodInfo>(SetWoodInfo);
             m_DetectionService = app.DetectionService;
             Task.Run(() =>
@@ -103,12 +104,12 @@ namespace EndFaceDetection.Shell.ViewModels
         [ObservableProperty]
         private ObservableCollection<DetectionModel> detectionModels = new ObservableCollection<DetectionModel>()
         {
-            new DetectionModel() {Key="00:空洞缺陷",IsOK=true},
-            new DetectionModel() {Key="03:空洞有无",IsOK=true},
-            new DetectionModel() {Key="04:开胶检测",IsOK=true},
-            new DetectionModel() {Key="05:PB缝隙",IsOK=true},
-            new DetectionModel() {Key="06:翘边检测",IsOK=true},
-            new DetectionModel() {Key="07:缺肉检测",IsOK=true},
+            new DetectionModel() {Key="00:空洞缺陷",IsOK=true,ID=0},
+            new DetectionModel() {Key="03:空洞有无",IsOK=true,ID=3},
+            new DetectionModel() {Key="04:开胶检测",IsOK=true,ID=4},
+            new DetectionModel() {Key="05:PB缝隙",IsOK=true,ID=5},
+            new DetectionModel() {Key="06:翘边检测",IsOK=true,ID=6},
+            new DetectionModel() {Key="07:缺肉检测",IsOK=true,ID=7},
         };
         //检测 结果
         [ObservableProperty]
@@ -125,6 +126,9 @@ namespace EndFaceDetection.Shell.ViewModels
 
         [ObservableProperty]
         private int imageCount=0;
+
+        [ObservableProperty]
+        private bool delayMode = true;
 
         #endregion
 
@@ -144,12 +148,13 @@ namespace EndFaceDetection.Shell.ViewModels
                 LoadingView loadingView = new LoadingView();
                 loadingView.ShowMsg("弹出图像。。。");
 
-                loadingView.Owner = App.Current.MainWindow;
+                
                 Task.Run(() =>
                 {
                     App.Current.Dispatcher.BeginInvoke(() =>
                     {
                         loadingView.Show();
+                        //loadingView.Owner = App.Current.MainWindow;
                     });
                     //Thread.Sleep(1000);
                     if (CameraResultInfo.Count > 0)
@@ -219,13 +224,12 @@ namespace EndFaceDetection.Shell.ViewModels
             }
         }
 
-        void UpdateDetectionResult(string name)
+        void UpdateDetectionResult(int index)
         {
             App.Current.Dispatcher.Invoke(() => 
             {
-                if (name == null)
-                    return;
-                var res = DetectionModels.FirstOrDefault((res) => res.Key.Contains(name));
+                
+                var res = DetectionModels.FirstOrDefault((res) => res.ID==index);
                 if (res != null) 
                 {
                     res.IsOK = false;
@@ -309,6 +313,7 @@ namespace EndFaceDetection.Shell.ViewModels
                 slim.Wait();
                 var res = m_DetectionService.StartDetecting(image, cameraName, save_img_path, save_json_path);
                 slim.Release();
+                // 保存结果到列表
                 if (res != null)
                 {
                     //DrawImage(res);
@@ -330,6 +335,7 @@ namespace EndFaceDetection.Shell.ViewModels
             
         }
 
+        // 更新相机状态
         private void UpdatedStatus(string cameraName, bool status)
         {
             if (cameraName.Contains("Camera"))

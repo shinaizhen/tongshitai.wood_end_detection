@@ -27,7 +27,7 @@ namespace EndFaceDetection.Shell
             serviceCollection.AddSingleton<CameraService>();
             serviceCollection.AddSingleton<DetectionService>();
             serviceCollection.AddSingleton<PLCService>();
-            serviceCollection.AddTransient<WoodService>();
+            serviceCollection.AddSingleton<WoodService>();
 
             ServiceProvider = serviceCollection.BuildServiceProvider();
             LogInView  logInView = new LogInView();

@@ -62,7 +62,7 @@
                     Content="PLC监控界面" 
                                  Checked="RadioButton_Checked"
                                  x:Name="radiobtn_PLCMonitor"/>
-                    <Button Style="{StaticResource defaultButton}" Content="打开测试窗体"  Command="{Binding ShowTestViewCommand}"/>
+                    <Button Style="{StaticResource defaultButton}" Visibility="Collapsed" Content="打开测试窗体"  Command="{Binding ShowTestViewCommand}"/>
                 </StackPanel>
             </DockPanel>
         </Border>

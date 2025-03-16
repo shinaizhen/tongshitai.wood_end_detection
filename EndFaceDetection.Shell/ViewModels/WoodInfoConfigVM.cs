@@ -202,6 +202,7 @@ namespace EndFaceDetection.Shell.ViewModels
                 {
                     WoodInfos.Add(wood);
                 }
+                Save();
             }
         }
 

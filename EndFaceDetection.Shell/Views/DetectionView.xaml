@@ -36,6 +36,12 @@
                     <Button Style="{StaticResource defaultButtonV2}" Content="手动拍照" Margin="10 0"/>
                     <Label Content="图像数量"/>
                     <TextBlock VerticalAlignment="Center" Text="{Binding ImageCount,Mode=OneWay,UpdateSourceTrigger=PropertyChanged}"/>
+                    <GroupBox Header="显示模式：" Visibility="Collapsed">
+                        <StackPanel Orientation="Horizontal">
+                            <RadioButton Content="实时显示"/>
+                            <RadioButton Content="延时显示" IsChecked="{Binding DelayMode,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+                    </GroupBox>
                 </StackPanel>
                 <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Right">
                     <TextBox Style="{StaticResource textbox_style_status}" 

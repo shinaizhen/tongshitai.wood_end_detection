@@ -12,6 +12,8 @@ namespace EndFaceDetection.Services
     {
         string _path="wood_info.json";
 
+        public Action? UpdateWoodInfosFunc;
+
         /// <summary>
         /// 根据二维码设置拍照位置
         /// </summary>
@@ -20,6 +22,7 @@ namespace EndFaceDetection.Services
         {
             if (woodInfo != null)
             {
+
                 WoodPosition.SetPositions(woodInfo);
             }
         }
@@ -49,6 +52,7 @@ namespace EndFaceDetection.Services
             if (data != null)
             {
                 JsonHelper.WriteJsonFile(_path, data);
+                UpdateWoodInfosFunc?.Invoke();
             }
         }
 
@@ -62,6 +66,7 @@ namespace EndFaceDetection.Services
             if (data != null)
             {
                 JsonHelper.WriteLargeJsonFile(path, data);
+                UpdateWoodInfosFunc?.Invoke();
             }
         }
     }

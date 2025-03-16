@@ -24,8 +24,13 @@ namespace EndFaceDetection.Shell.ViewModels
             plcService.ConnectedAction += new Action<bool>(UpdateConnected);
             plcService.PLCDataUpdated += new Action<PLCDataUpdatedEvents>(PLCDeviceUpdate);
             Woods = new ObservableCollection<WoodInfo>(woodService.GetWoodInfos());
-            
+            woodService.UpdateWoodInfosFunc += new Action(UpdateWoodInfos);
             //Task.Run(() => { plcService.Init(); });
+        }
+
+        private void UpdateWoodInfos()
+        {
+            Woods = new ObservableCollection<WoodInfo>(woodService.GetWoodInfos());
         }
 
         void PLCDeviceUpdate(PLCDataUpdatedEvents e)
